@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="ChatBotApplication.Views.QuizView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="800">
+
+    <Grid Background="Transparent" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Text="Cybersecurity Quiz" 
+                   FontSize="28" FontWeight="Bold" 
+                   Foreground="White"
+                   Margin="0 0 0 20"/>
+
+        <!-- Quiz Content -->
+        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0,10">
+            <TextBlock x:Name="QuestionText" Text="Question will appear here" 
+                       FontSize="20" FontWeight="SemiBold" 
+                       Foreground="White" TextWrapping="Wrap" Margin="0 0 0 20"/>
+
+            <StackPanel x:Name="OptionsPanel" Margin="0 0 0 20">
+                <!-- RadioButtons dynamically inserted here -->
+            </StackPanel>
+
+            <Button x:Name="SubmitAnswerButton"
+                    Content="Submit Answer" 
+                    Background="#800080" Foreground="White" 
+                    FontSize="16" Padding="10" Width="150"
+                    HorizontalAlignment="Left"
+                    BorderBrush="#800080"
+                    BorderThickness="1"
+                    Cursor="Hand"
+                    Click="SubmitAnswer_Click">
+                <Button.Effect>
+                    <DropShadowEffect ShadowDepth="2" BlurRadius="5" Color="Black" Opacity="0.3"/>
+                </Button.Effect>
+            </Button>
+        </StackPanel>
+
+        <!-- Score and Feedback Display -->
+        <StackPanel Grid.Row="2" Orientation="Vertical">
+            <TextBlock x:Name="ScoreText" Text="Score: 0" 
+                       FontSize="16" Foreground="White" 
+                       HorizontalAlignment="Right" Margin="0,5,0,0"/>
+
+            <TextBlock x:Name="FeedbackText" Text="" 
+                       FontSize="16" Foreground="LightGreen" 
+                       HorizontalAlignment="Right" Margin="0,5,0,0"/>
+
+            <ProgressBar x:Name="ScoreProgressBar" Height="10" Minimum="0" Maximum="8" Value="0"
+                         Foreground="#800080" Background="#444" Margin="0,5,0,0"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

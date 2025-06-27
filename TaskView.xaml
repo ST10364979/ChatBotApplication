@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="ChatBotApplication.Views.TaskView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="800">
+
+    <Grid Background="Transparent" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Text="Task Assistant" 
+                   FontSize="28" FontWeight="Bold" 
+                   Foreground="White"
+                   Margin="0 0 0 20"/>
+
+        <!-- Task Input Form and List -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left: Input Form -->
+            <StackPanel Orientation="Vertical" Grid.Column="0">
+                <TextBlock Text="Task Title" Foreground="White" Margin="0 0 0 5"/>
+                <TextBox x:Name="TaskTitleBox" 
+                         FontSize="16" Margin="0 0 0 10"
+                         Padding="8" BorderThickness="1" BorderBrush="#AAA"/>
+
+                <TextBlock Text="Task Description" Foreground="White" Margin="0 0 0 5"/>
+                <TextBox x:Name="TaskDescriptionBox" 
+                         FontSize="16" Height="100"
+                         TextWrapping="Wrap" AcceptsReturn="True"
+                         Padding="8" BorderThickness="1" BorderBrush="#AAA"
+                         Margin="0 0 0 10"/>
+
+                <TextBlock Text="Reminder Date" Foreground="White" Margin="0 0 0 5"/>
+                <DatePicker x:Name="ReminderDatePicker" Margin="0 0 0 20"/>
+
+                <Button Content="Add Task"
+                        Background="#800080" Foreground="White"
+                        FontSize="16" Padding="10"
+                        Click="AddTask_Click"/>
+            </StackPanel>
+
+            <!-- Right: Task List -->
+            <ListView x:Name="TaskListView" Grid.Column="1" Margin="20,0,0,0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="#33000000" CornerRadius="8" Margin="5" Padding="10">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="16" Foreground="White"/>
+                                <TextBlock Text="{Binding Description}" FontSize="14" Foreground="White"/>
+                                <TextBlock Text="{Binding ReminderDate, StringFormat='Reminder: {0:dd MMM yyyy}'}" FontSize="12" Foreground="#CCC"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+                <!-- Context Menu -->
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Edit Task" Click="EditTask_Click"/>
+                        <MenuItem Header="Delete Task" Click="DeleteTask_Click"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+            </ListView>
+
+        </Grid>
+    </Grid>
+</UserControl>
