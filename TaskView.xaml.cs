@@ -41,10 +41,6 @@ namespace ChatBotApplication.Views
             MessageBox.Show("Task details successfully saved.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        // Show success popup
-        MessageBox.Show("Task details successfully saved.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
         private void DeleteTask_Click(object sender, RoutedEventArgs e)
         {
             if (TaskListView.SelectedItem is Task selectedTask)
